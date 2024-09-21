@@ -1,4 +1,4 @@
-# EX3 Implementation of GSP Algorithm In Python
+# EX3:Implementation of GSP Algorithm In Python
 # DATE: 
 
 ## AIM:
