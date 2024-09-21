@@ -1,9 +1,12 @@
-### EX3 Implementation of GSP Algorithm In Python
-### DATE: 
-### AIM: To implement GSP Algorithm In Python.
-### Description:
+# EX3 Implementation of GSP Algorithm In Python
+# DATE: 
+## AIM:
+To implement GSP Algorithm In Python.
+
+## Description:
 The Generalized Sequential Pattern (GSP) algorithm is a data mining technique used for discovering frequent patterns within a sequence database. It operates by identifying sequences that frequently occur together. GSP works by employing a depth-first search strategy to explore and extract frequent patterns efficiently.
-### Steps:
+
+## Steps:
 1. <strong>Database Scanning:</strong> GSP scans the sequence database to determine the support of each item in the dataset.
 2. <strong>Candidate Generation:</strong> It generates a set of candidate sequences using frequent items found in the previous step.
 3. <strong>Pattern Growth:</strong> It extends the candidate sequences by merging them to form longer patterns, checking their support against a user-defined minimum support threshold.
@@ -12,7 +15,7 @@ The Generalized Sequential Pattern (GSP) algorithm is a data mining technique us
 GSP finds application in various domains such as market basket analysis, web usage mining, bioinformatics, and more. For instance, in retail, GSP can identify common purchasing patterns, helping businesses understand customer behavior for targeted marketing or inventory management.
 </p>
 
-### Procedure:
+## Procedure:
 <p align="justify">
 1. From collections import defaultdict, from itertools import combinations: Imports necessary libraries/modules. defaultdict is
 used to create a dictionary with default values and combinations generates all possible combinations of a sequence.</p>
@@ -36,24 +39,34 @@ for each wear category.</p>
 <p align="justify">
 8. Visulaize the sequence patterns using matplotlib.
 </p>
-### Program:
 
-```python
+## Program:
+```
 from collections import defaultdict
 from itertools import combinations
 # Function to generate candidate k-item sequences
 def generate_candidates(dataset, k):
+  candidates = defaultdict(int)
+  for seq in dataset:
+     for comb in combinations (seq, k):
 
+         candidates [comb] += 1
 
-    /WRITE YOUR CODE HERE/
-
+  return {item: support for item, support in candidates.items() if support >= min_support}
 
 #Function to perform GSP algorithm
 def gsp(dataset, min_support):
+  frequent_patterns = defaultdict(int) # Added assignment operator
+  k = 1
+  sequences = dataset
+  while True:
+      candidates = generate_candidates (sequences, k)
+      if not candidates:
+         break
+      frequent_patterns.update(candidates)
+      k += 1
 
-
-  /WRITE YOUR CODE HERE/
-
+  return frequent_patterns
 
 #Example dataset for each category
 top_wear_data = [
@@ -100,7 +113,6 @@ if party_wear_result:
  print(f"Pattern: {pattern}, Support: {support}")
 else:
  print("No frequent sequential patterns found in Party Wear.")
-```
 ### Output:
 
 ### Visualization:
@@ -128,8 +140,20 @@ def visualize_patterns_line(result, category):
 visualize_patterns_line(top_wear_result, 'Top Wear')
 visualize_patterns_line(bottom_wear_result, 'Bottom Wear')
 visualize_patterns_line(party_wear_result, 'Party Wear')
+
 ```
-### Output:
 
+## Output:
 
-### Result:
+![368181427-ab8f627e-9347-48f8-a78e-9b3e89851305](https://github.com/user-attachments/assets/5f180b4f-32b0-4ae6-a7fa-8703ab95f9cc)
+
+## Visualization:
+
+![image](https://github.com/user-attachments/assets/9449ad66-c5f5-438a-9b66-e2d52465a754)
+
+## Output:
+
+![368181450-0330be8c-9217-412e-be6b-4b4895d3f6c4](https://github.com/user-attachments/assets/15bb43f9-c851-4780-9d66-6e6d96cff1b8)
+
+## Result:
+Thus the implementation of the GSP algorithm in python has been successfully executed.
