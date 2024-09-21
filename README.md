@@ -149,8 +149,31 @@ visualize_patterns_line(party_wear_result, 'Party Wear')
 ![368181427-ab8f627e-9347-48f8-a78e-9b3e89851305](https://github.com/user-attachments/assets/5f180b4f-32b0-4ae6-a7fa-8703ab95f9cc)
 
 ## Visualization:
+```
+import matplotlib.pyplot as plt
+# Function to visualize frequent sequential patterns with a line plot
+def visualize_patterns_line(result, category):
+    if result:
+        patterns = list(result.keys())
+        support = list(result.values())
 
-![image](https://github.com/user-attachments/assets/9449ad66-c5f5-438a-9b66-e2d52465a754)
+        plt.figure(figsize=(10, 6))
+        plt.plot([str(pattern) for pattern in patterns], support, marker='o', linestyle='-', color='blue')
+        plt.xlabel('Patterns')
+        plt.ylabel('Support Count')
+        plt.title(f'Frequent Sequential Patterns - {category}')
+        plt.xticks(rotation=90)
+        plt.tight_layout()
+        plt.show()
+    else:
+        print(f"No frequent sequential patterns found in {category}.")
+
+# Visualize frequent sequential patterns for each category using a line plot
+visualize_patterns_line(top_wear_result, 'Top Wear')
+visualize_patterns_line(bottom_wear_result, 'Bottom Wear')
+visualize_patterns_line(party_wear_result, 'Party Wear')
+```
+
 
 ## Output:
 
